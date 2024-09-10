@@ -172,3 +172,47 @@ Rotate Right:
 
 Input: [1, 2, 3, 4, 5, 6, 7], d = 2
 Output: [6, 7, 1, 2, 3, 4, 5]
+----------------------------------------------Moore’s Voting Algorithm:------------------------------------------------------
+Purpose: Find the majority element in an array (an element that appears more than n/2 times).
+
+Key Idea: Uses a single pass and constant space to determine the candidate for majority element.
+
+Steps:
+Candidate Selection:
+
+Initialize candidate and count to None and 0, respectively.
+Traverse the array:
+If count is 0, set candidate to the current element.
+If the current element is the same as candidate, increment count.
+Otherwise, decrement count.
+Verification (Optional but recommended):
+
+Traverse the array again to count occurrences of the candidate and check if it appears more than n/2 times.
+Code Example:
+python
+Copy code
+def moore_voting_algorithm(arr):
+    # Step 1: Find the candidate
+    candidate = None
+    count = 0
+    for num in arr:
+        if count == 0:
+            candidate = num
+        count += (1 if num == candidate else -1)
+    
+    # Step 2: Verify the candidate
+    count = 0
+    for num in arr:
+        if num == candidate:
+            count += 1
+    if count > len(arr) // 2:
+        return candidate
+    return None  # No majority element
+Time Complexity:
+O(n) (Single pass for candidate selection and verification)
+Space Complexity:
+O(1) (Constant space)
+Example:
+Input: [3, 3, 4, 2, 4, 4, 2, 4, 4]
+Output: 4 (since 4 appears more than n/2 times)
+This concise version provides the essential details and steps of Moore's Voting Algorithm for quick reference.
