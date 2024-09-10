@@ -215,4 +215,31 @@ O(1) (Constant space)
 Example:
 Input: [3, 3, 4, 2, 4, 4, 2, 4, 4]
 Output: 4 (since 4 appears more than n/2 times)
-This concise version provides the essential details and steps of Moore's Voting Algorithm for quick reference.
+----------------------------------------------Kadane's Algorithm--------------------------------------------------------------
+Purpose: Find the maximum sum of a contiguous subarray in an array of integers.
+
+Key Idea:
+Traverse the array while keeping track of the current subarray sum and the maximum sum found so far.
+Steps:
+Initialize max_current and max_global as the first element of the array.
+Traverse the array starting from the second element:
+Update max_current as the maximum of the current element or max_current + current element.
+If max_current > max_global, update max_global.
+max_global will hold the maximum sum at the end.
+Code Example:
+python
+Copy code
+def kadanes_algorithm(arr):
+    max_current = max_global = arr[0]
+    for num in arr[1:]:
+        max_current = max(num, max_current + num)
+        if max_current > max_global:
+            max_global = max_current
+    return max_global
+Time Complexity:
+O(n) (Single pass through the array)
+Space Complexity:
+O(1) (Constant space)
+Example:
+Input: [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Output: 6 (subarray [4, -1, 2, 1] has the maximum sum)
